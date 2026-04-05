@@ -1,0 +1,74 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: codelight --default, glassloop --prefersdark;
+}
+
+@plugin "daisyui/theme" {
+  name: "codelight";
+  default: true;
+  prefersdark: false;
+  color-scheme: "light";
+  --color-base-100: #ffffff;
+  --color-base-200: #fefefe;
+  --color-base-300: #f9fafb;
+  --color-base-content: #111827;
+  --color-primary: #ead7fb;
+  --color-primary-content: #9041d5;
+  --color-secondary: #111827;
+  --color-secondary-content: oklch(98% 0.003 247.858);
+  --color-accent: #fff7ed;
+  --color-accent-content: #f97316;
+  --color-neutral: #f3f4f6;
+  --color-neutral-content: #797f8c;
+  --color-info: #eff6ff;
+  --color-info-content: #3b82f6;
+  --color-success: #f0fdf4;
+  --color-success-content: #22c55e;
+  --color-warning: oklch(66% 0.179 58.318);
+  --color-warning-content: oklch(98% 0.022 95.277);
+  --color-error: #fef2f2;
+  --color-error-content: #ef4f4f;
+  --radius-selector: 2rem;
+  --radius-field: 1rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@plugin "daisyui/theme" {
+  name: "glassloop";
+  default: false;
+  prefersdark: false;
+  color-scheme: "dark";
+  --color-base-100: #030712;
+  --color-base-200: #0e1422;
+  --color-base-300: oklch(27% 0.006 286.033);
+  --color-base-content: oklch(96% 0.001 286.375);
+  --color-primary: #46386c;
+  --color-primary-content: #9167c5;
+  --color-secondary: #5b6471;
+  --color-secondary-content: #9ca3af;
+  --color-accent: #c4601d;
+  --color-accent-content: #f97316;
+  --color-neutral: #1f2937;
+  --color-neutral-content: #ffffff;
+  --color-info: #28487b;
+  --color-info-content: #3b82f6;
+  --color-success: #1f7a4b;
+  --color-success-content: #21b058;
+  --color-warning: oklch(66% 0.179 58.318);
+  --color-warning-content: oklch(98% 0.022 95.277);
+  --color-error: #5a2530;
+  --color-error-content: #c03a3d;
+  --radius-selector: 2rem;
+  --radius-field: 1rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
