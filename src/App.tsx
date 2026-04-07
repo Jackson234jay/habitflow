@@ -1,4 +1,5 @@
 import AuthPage from "./pages/AuthPage";
+import CheckEmail from "./pages/CheckEmail";
 import Signup from "./pages/Signup";
 
 const App = () => {

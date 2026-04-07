@@ -1,13 +1,48 @@
 import { useState } from "react";
+import { supabase } from "../utils/supabase";
 import { Eye, EyeOff, Mail, User, Lock, ArrowRight } from "lucide-react";
 import ExtAuth from "./ExtAuth";
+import { useNavigate } from "react-router";
 
 const Signup = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const handleSignup = async (e: React.SubmitEvent) => {
+    e.preventDefault();
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    setLoading(true);
+
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          full_name: name,
+        },
+      },
+    });
+
+    setLoading(false);
+
+    if (error) return alert(error.message);
+
+    alert("Check your email for a confirmation link (if enabled).");
+    navigate("/check-email");
+  };
   return (
     <>
-      <form className="space-y-4 w-full">
+      <form onSubmit={handleSignup} className="space-y-4 w-full">
         <div>
           <label
             htmlFor="fullName"
@@ -21,6 +56,8 @@ const Signup = () => {
               type="text"
               id="fullName"
               name="fullName"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               placeholder="John Doe"
               className="w-full "
             />
@@ -38,6 +75,8 @@ const Signup = () => {
             <input
               type="email"
               id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               name="email"
               className="w-full"
               placeholder="mail@site.com"
@@ -57,6 +96,8 @@ const Signup = () => {
             <input
               id="password"
               name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               type={showPassword ? "text" : "password"}
               required
               className="placeholder:text-xl w-full"
@@ -89,6 +130,8 @@ const Signup = () => {
               id="confirmpassword"
               name="confirmpassword"
               className="placeholder:text-xl"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="........"
               type={showConfirmPassword ? "text" : "password"}
             />
@@ -112,6 +155,7 @@ const Signup = () => {
         <div>
           <button
             type="submit"
+            disabled={loading}
             className="btn bg-primary-content outline-none border-transparent w-full text-white my-4"
           >
             Create Account <ArrowRight />

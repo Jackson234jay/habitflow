@@ -1,9 +1,11 @@
-import { Eye, EyeOff, Mail, Lock } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, ArrowRight } from "lucide-react";
 import ExtAuth from "./ExtAuth";
+import { supabase } from "../utils/supabase";
 import { useState } from "react";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   return (
     <>
       <form className="space-y-4 w-full">
@@ -55,6 +57,15 @@ const Login = () => {
               <EyeOff className="swap-on text-neutral-content" />
             </label>
           </div>
+        </div>
+        <div>
+          <button
+            type="submit"
+            disabled={loading}
+            className="btn bg-primary-content outline-none border-transparent w-full text-white my-4"
+          >
+            Sign In <ArrowRight />
+          </button>
         </div>
       </form>
       <ExtAuth />
