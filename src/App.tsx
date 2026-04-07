@@ -1,10 +1,10 @@
+import AuthPage from "./pages/AuthPage";
+import Signup from "./pages/Signup";
+
 const App = () => {
   return (
-    <div>
-      <h1 className="text-primary-content bg-primary">Hello World</h1>
-      <div role="alert" className="alert alert-error">
-        <span>Error! Task failed successfully.</span>
-      </div>
+    <div className=" h-screen w-full">
+      <AuthPage />
     </div>
   );
 };

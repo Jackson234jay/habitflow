@@ -14,8 +14,8 @@
   --color-base-content: #111827;
   --color-primary: #ead7fb;
   --color-primary-content: #9041d5;
-  --color-secondary: #111827;
-  --color-secondary-content: oklch(98% 0.003 247.858);
+  --color-secondary: oklch(98% 0.003 247.858);
+  --color-secondary-content: #111827;
   --color-accent: #fff7ed;
   --color-accent-content: #f97316;
   --color-neutral: #f3f4f6;
@@ -29,7 +29,7 @@
   --color-error: #fef2f2;
   --color-error-content: #ef4f4f;
   --radius-selector: 2rem;
-  --radius-field: 1rem;
+  --radius-field: 0.5rem;
   --radius-box: 1rem;
   --size-selector: 0.25rem;
   --size-field: 0.25rem;
@@ -64,11 +64,12 @@
   --color-error: #5a2530;
   --color-error-content: #c03a3d;
   --radius-selector: 2rem;
-  --radius-field: 1rem;
+  --radius-field: 0.5rem;
   --radius-box: 1rem;
   --size-selector: 0.25rem;
   --size-field: 0.25rem;
   --border: 1px;
   --depth: 0;
+
   --noise: 0;
 }
