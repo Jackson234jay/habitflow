@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "../utils/supabase";
 import { Eye, EyeOff, Mail, User, Lock, ArrowRight } from "lucide-react";
 import ExtAuth from "./ExtAuth";
@@ -12,12 +12,25 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
   const navigate = useNavigate();
+  useEffect(() => {
+    if (!message) return;
+
+    const timer = setTimeout(() => {
+      setMessage(null);
+    }, 4000);
+
+    return () => clearTimeout(timer);
+  }, [message]);
   const handleSignup = async (e: React.SubmitEvent) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      alert("Passwords do not match");
+      setMessage({ text: "Passwords do not match", type: "error" });
       return;
     }
 
@@ -35,14 +48,29 @@ const Signup = () => {
 
     setLoading(false);
 
-    if (error) return alert(error.message);
+    if (error) {
+      setMessage({ text: error.message, type: "error" });
+      return;
+    }
 
-    alert("Check your email for a confirmation link (if enabled).");
+    setMessage({
+      text: "Signup Successful",
+      type: "success",
+    });
     navigate("/check-email");
   };
   return (
     <>
       <form onSubmit={handleSignup} className="space-y-4 w-full">
+        {message && (
+          <div
+            className={`alert ${
+              message.type === "error" ? "alert-error" : "alert-success"
+            }`}
+          >
+            <span>{message.text}</span>
+          </div>
+        )}
         <div>
           <label
             htmlFor="fullName"

@@ -1,14 +1,56 @@
 import { Eye, EyeOff, Mail, Lock, ArrowRight } from "lucide-react";
 import ExtAuth from "./ExtAuth";
 import { supabase } from "../utils/supabase";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
+  useEffect(() => {
+    if (!message) return;
+
+    const timer = setTimeout(() => {
+      setMessage(null);
+    }, 4000);
+
+    return () => clearTimeout(timer);
+  }, [message]);
+  const navigate = useNavigate();
+  const handleSignIn = async (e: React.SubmitEvent) => {
+    e.preventDefault();
+
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    setLoading(false);
+
+    if (error) {
+      setMessage({ text: error.message, type: "error" });
+      return;
+    }
+
+    navigate("/dashboard");
+  };
   return (
     <>
-      <form className="space-y-4 w-full">
+      <form onSubmit={handleSignIn} className="space-y-4 w-full">
+        {message && (
+          <div
+            className={`alert ${
+              message.type === "error" ? "alert-error" : "alert-success"
+            }`}
+          >
+            <span>{message.text}</span>
+          </div>
+        )}
         <div>
           <label
             htmlFor="email"
@@ -22,6 +64,8 @@ const Login = () => {
               type="email"
               id="email"
               name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full"
               placeholder="mail@site.com"
               required
@@ -40,6 +84,8 @@ const Login = () => {
             <input
               id="password"
               name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               type={showPassword ? "text" : "password"}
               required
               className="placeholder:text-xl w-full"
@@ -57,6 +103,11 @@ const Login = () => {
               <EyeOff className="swap-on text-neutral-content" />
             </label>
           </div>
+        </div>
+        <div className="flex justify-end">
+          <a href="/" className="text-primary-content">
+            Forgot password?
+          </a>
         </div>
         <div>
           <button
