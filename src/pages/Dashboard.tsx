@@ -1,3 +1,4 @@
+import Navbar from "../components/Navbar";
 import { useAuth } from "../context/AuthContext";
 
 const Dashboard = () => {
@@ -6,7 +7,14 @@ const Dashboard = () => {
   const firstName = fullName.split(" ")[0];
   console.log(user);
 
-  return <div>Welcome {firstName || user?.email}</div>;
+  return (
+    <div className="bg-base-300 min-h-screen">
+      <div>
+        <Navbar />
+      </div>
+      <div>Welcome {firstName || user?.email}👋</div>
+    </div>
+  );
 };
 
 export default Dashboard;
