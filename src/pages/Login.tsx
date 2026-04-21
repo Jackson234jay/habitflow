@@ -25,8 +25,8 @@ const Login = () => {
   const navigate = useNavigate();
   const handleSignIn = async (e: React.SubmitEvent) => {
     e.preventDefault();
-
-    const { error } = await supabase.auth.signInWithPassword({
+    setLoading(true);
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
@@ -36,8 +36,8 @@ const Login = () => {
       setMessage({ text: error.message, type: "error" });
       return;
     }
-
-    navigate("/dashboard");
+    const uid = data.user?.id;
+    navigate(`/dashboard?uid=${uid}`);
   };
   return (
     <>
