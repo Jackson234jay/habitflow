@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Bell, Menu, X } from "lucide-react";
+import ThemeController from "./ThemeController";
 
-const Navbar = () => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -14,7 +15,7 @@ const Navbar = () => {
           ${open ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
         `}
       >
-        <div className="p-4 flex items-center gap-3 font-bold bg-base-200">
+        <div className="p-4 flex items-center gap-3 font-bold bg-base-100">
           <span className="w-8 h-8 rounded-xl text-sm shadow-lg shadow-primary flex bg-primary-content text-white items-center justify-center">
             H
           </span>
@@ -31,16 +32,18 @@ const Navbar = () => {
       {/* RIGHT SIDE (TOPBAR + CONTENT) */}
       <div className="flex-1 flex flex-col">
         {/* TOPBAR */}
-        <div className="flex items-center justify-between p-4 bg-base-200">
+        <div className="flex items-center justify-between p-4 border-b bg-base-200">
           {/* Mobile menu button */}
           <button className="md:hidden" onClick={() => setOpen(true)}>
             <Menu />
           </button>
-          <div>Profile</div>
+          <div>
+            <ThemeController />
+          </div>
         </div>
 
         {/* PAGE CONTENT */}
-        <div className="p-6">Your content here</div>
+        <main className="p-6 bg-base-300 flex-1">{children}</main>
       </div>
 
       {/* OVERLAY (mobile only) */}
@@ -54,4 +57,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Layout;

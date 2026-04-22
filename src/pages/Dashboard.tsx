@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar";
+import Layout from "../components/Navbar";
 import { useAuth } from "../context/AuthContext";
 
 const Dashboard = () => {
@@ -8,12 +8,11 @@ const Dashboard = () => {
   console.log(user);
 
   return (
-    <div className="bg-base-300 min-h-screen">
-      <div>
-        <Navbar />
-      </div>
-      <div>Welcome {firstName || user?.email}👋</div>
-    </div>
+    <Layout>
+      <h1 className="text-xl font-bold">
+        Welcome {firstName || user?.email}👋
+      </h1>
+    </Layout>
   );
 };
 
