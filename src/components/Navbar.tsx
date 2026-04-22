@@ -1,9 +1,19 @@
 import { useState } from "react";
-import { Bell, Menu, X } from "lucide-react";
+import { NavLink } from "react-router";
+import {
+  Bell,
+  ChartNoAxesColumn,
+  CheckCircle,
+  LayoutGrid,
+  Menu,
+  Settings,
+  X,
+} from "lucide-react";
 import ThemeController from "./ThemeController";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const [open, setOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState("dashboard");
 
   return (
     <div className="flex min-h-screen">
@@ -16,17 +26,70 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     ${open ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
   `}
       >
-        <div className="p-4 flex items-center gap-3  font-bold bg-base-100">
-          <span className="w-8 h-8 rounded-xl text-sm shadow-lg shadow-primary flex bg-primary-content text-white items-center justify-center">
+        <div className="p-6 flex items-center font-semibold text-lg gap-3  bg-base-100">
+          <span className="w-8 h-8 rounded-xl text-xl font-bold shadow-lg shadow-primary flex bg-primary-content text-white items-center justify-center">
             H
           </span>
           HabitFlow
         </div>
 
         <nav className="p-4  space-y-3">
-          <button className="block p-2 hover:bg-base-200 rounded">Home</bu>
-          <buttoclassName="block p-2 hover:bg-base-200 rounded">Dashboard</buttoclassName=>
-          <a className="block p-2 hover:bg-base-200 rounded">Settings</a>
+          <NavLink
+            to={"/dashboard"}
+            onClick={() => setSelectedItem("dashboard")}
+            className={({ isActive }) =>
+              `w-full flex text-md items-center gap-3 px-4 py-2 rounded transition-colors ${
+                isActive
+                  ? "bg-primary text-primary-content font-semibold"
+                  : "hover:bg-base-200"
+              }`
+            }
+          >
+            <LayoutGrid className="w-5 h-5" />
+            Dashboard
+          </NavLink>
+          <NavLink
+            to={"/habits"}
+            onClick={() => setSelectedItem("habits")}
+            className={({ isActive }) =>
+              `w-full text-md flex items-center gap-3 px-4 py-2 rounded transition-colors ${
+                isActive
+                  ? "bg-primary text-primary-content font-semibold"
+                  : "hover:bg-base-200"
+              }`
+            }
+          >
+            <CheckCircle className="w-5 h-5" />
+            Habits
+          </NavLink>
+          <NavLink
+            to={"/analytics"}
+            onClick={() => setSelectedItem("analytics")}
+            className={({ isActive }) =>
+              `w-full text-md flex items-center gap-3 px-4 py-2 rounded transition-colors ${
+                isActive
+                  ? "bg-primary text-primary-content font-semibold"
+                  : "hover:bg-base-200"
+              }`
+            }
+          >
+            <ChartNoAxesColumn className="w-5 h-5" />
+            Analytics
+          </NavLink>
+          <NavLink
+            to={"/settings"}
+            onClick={() => setSelectedItem("settings")}
+            className={({ isActive }) =>
+              `w-full flex text-md items-center gap-3 px-4 py-2 rounded transition-colors ${
+                isActive
+                  ? "bg-primary text-primary-content font-semibold"
+                  : "hover:bg-base-200"
+              }`
+            }
+          >
+            <Settings className="w-5 h-5" />
+            Settings
+          </NavLink>
         </nav>
       </div>
 
