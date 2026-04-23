@@ -1,4 +1,4 @@
-import { Plus } from "lucide-react";
+import { CircleCheck, Flame, Plus, Target } from "lucide-react";
 import Layout from "../components/Navbar";
 import { useAuth } from "../context/AuthContext";
 
@@ -33,13 +33,57 @@ const Dashboard = () => {
         </button>
       </div>
       <div className="py-4">
-        <div className="card bg-base-100">
-          <div className="card-body">
-            <h2 className="card-title">Card title!</h2>
-            <p>
-              A card component has a figure, a body part, and inside body there
-              are title and actions parts
-            </p>
+        <div className="flex gap-4">
+          {/* CARD 1 */}
+          <div className="card card-sm bg-base-100 shadow-sm flex-1">
+            <div className="card-body">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-info">
+                  <Target className="text-info-content" size={20} />
+                </div>
+
+                <div>
+                  <h2 className="text-sm font-medium text-secondary-content">
+                    Total habits
+                  </h2>
+                  <p className="font-bold text-2xl">6</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="card card-sm bg-base-100 shadow-sm flex-1">
+            <div className="card-body">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-success">
+                  <CircleCheck className="text-success-content" size={20} />
+                </div>
+
+                <div>
+                  <h2 className="text-sm font-medium text-secondary-content">
+                    Today's Progress
+                  </h2>
+                  <p className="font-bold text-2xl">4/6</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CARD 2 */}
+          <div className="card card-sm bg-base-100 shadow-sm flex-1">
+            <div className="card-body">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-accent">
+                  <Flame className="text-accent-content" size={20} />
+                </div>
+
+                <div>
+                  <h2 className="text-sm font-medium text-secondary-content">
+                    Best Streak
+                  </h2>
+                  <p className="font-bold text-2xl">30 Days</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -51,13 +51,13 @@
   --color-primary-content: #9739ec;
   --color-secondary: #5b6471;
   --color-secondary-content: #9ca3af;
-  --color-accent: #c4601d;
+  --color-accent: #343033;
   --color-accent-content: #f97316;
   --color-neutral: #1f2937;
   --color-neutral-content: #ffffff;
-  --color-info: #28487b;
+  --color-info: #21314A;
   --color-info-content: #3b82f6;
-  --color-success: #1f7a4b;
+  --color-success: #1E383B;
   --color-success-content: #21b058;
   --color-warning: oklch(66% 0.179 58.318);
   --color-warning-content: oklch(98% 0.022 95.277);
