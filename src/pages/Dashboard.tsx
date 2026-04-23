@@ -33,12 +33,12 @@ const Dashboard = () => {
         </button>
       </div>
       <div className="py-4">
-        <div className="flex gap-4">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {/* CARD 1 */}
           <div className="card card-sm bg-base-100 shadow-sm flex-1">
             <div className="card-body">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-info">
+                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-info/30">
                   <Target className="text-info-content" size={20} />
                 </div>
 
@@ -54,7 +54,7 @@ const Dashboard = () => {
           <div className="card card-sm bg-base-100 shadow-sm flex-1">
             <div className="card-body">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-success">
+                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-success/30">
                   <CircleCheck className="text-success-content" size={20} />
                 </div>
 
@@ -72,7 +72,7 @@ const Dashboard = () => {
           <div className="card card-sm bg-base-100 shadow-sm flex-1">
             <div className="card-body">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-accent">
+                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-accent/30">
                   <Flame className="text-accent-content" size={20} />
                 </div>
 
@@ -84,6 +84,19 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+        <div className="py-4 flex items-center justify-between">
+          <h1 className="text-xl font-semibold">Your Habits</h1>
+
+          <div className="flex gap-2">
+            <button className="btn btn-sm bg-neutral text-neutral-content border-none">
+              All
+            </button>
+
+            <button className="btn btn-ghost text-neutral-content btn-sm hover:btn-secondary">
+              Morning
+            </button>
           </div>
         </div>
       </div>
